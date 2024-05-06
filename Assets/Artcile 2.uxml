@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="background" style="flex-grow: 1; position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgb(0, 0, 0); display: none;">
+        <CustomElements.EmojiIconElement style="position: absolute; left: 805px; top: 0; right: 0; bottom: 527px; display: flex;" />
+        <CustomElements.SmileEmojiElement style="position: absolute; top: 529px; left: 0; right: 806px; bottom: 0; visibility: visible; display: flex;" />
+        <CustomElements.ArcElement style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: flex; visibility: visible;" />
+        <CustomElements.StarElement style="position: absolute; left: 870px; top: 584px; right: 37px; bottom: 31px; display: flex;" />
+        <ui:Label tabindex="-1" text="Новые смыслы в анимациях" parse-escape-sequences="true" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=5c9a8667338b44ebfb4f57db9836fb3b&amp;type=3#NotInter-Regular&quot;); position: absolute; left: 0; top: 0; right: 0; bottom: 0; -unity-text-align: middle-center; font-size: 60px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="workshop" style="flex-grow: 1; display: flex; visibility: visible; position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.58);">
+        <CustomElements.RombElement style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;" />
+    </ui:VisualElement>
+</ui:UXML>
