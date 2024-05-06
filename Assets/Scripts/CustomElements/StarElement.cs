@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace CustomElements
 {
-    public class StarElement : VisualElement
+    [UxmlElement]
+    public partial class StarElement : VisualElement
     {
-        public new class UxmlFactory : UxmlFactory<StarElement> { }
-
         public StarElement()
         {
             generateVisualContent += GenerateVisualContent;

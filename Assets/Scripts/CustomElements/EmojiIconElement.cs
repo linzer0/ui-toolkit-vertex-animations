@@ -3,10 +3,9 @@ using UnityEngine.UIElements;
 
 namespace CustomElements
 {
-    public class EmojiIconElement : VisualElement
+    [UxmlElement]
+    public partial class EmojiIconElement : VisualElement
     {
-        public new class UxmlFactory : UxmlFactory<EmojiIconElement> { }
-
         public EmojiIconElement()
         {
             generateVisualContent += GenerateVisualContent;
