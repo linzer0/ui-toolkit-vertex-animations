@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -6,7 +7,7 @@ namespace CustomElements
     [UxmlElement]
     public partial class RombElement : VisualElement
     {
-
+        
         public RombElement()
         {
             generateVisualContent += GenerateVisualContent;
@@ -16,15 +17,22 @@ namespace CustomElements
 
         private void ChangeColorAnimation()
         {
+            var currentTime = Time.time * 4;
+            firstColor.a = (byte)(currentTime % 255);
+            secondColor.a = (byte)(currentTime % 255);
+            thirdColor.a = (byte)(currentTime % 255);
+            fourColor.a = (byte)(currentTime % 255);
+            
+            MarkDirtyRepaint();
         }
 
         Vertex[] vertices = new Vertex[4];
         ushort[] indices = { 0, 1, 2, 2, 3, 0 };
 
-        private Color32 firstColor  = new Color32(255, 0, 0, 255);
-        private Color32 secondColor  = new Color32(0, 255, 0, 255);
-        private Color32 thirdColor  = new Color32(0, 0, 255, 255);
-        private Color32 fourColor  = new Color32(17, 55, 55, 255);
+        private Color32 firstColor  = new (255, 0, 0, 255);
+        private Color32 secondColor  = new (0, 255, 0, 255);
+        private Color32 thirdColor  = new (0, 0, 255, 255);
+        private Color32 fourColor  = new (17, 55, 55, 255);
 
         void GenerateVisualContent(MeshGenerationContext mgc)
         {
