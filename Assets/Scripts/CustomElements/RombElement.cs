@@ -7,32 +7,53 @@ namespace CustomElements
     [UxmlElement]
     public partial class RombElement : VisualElement
     {
+        private Time _startTime;
+        private float timeLeft;
+
+        private float AlphaValue = 255;
+        private bool ReversedAnimation = false;
+        private const float AnimationTime = 1f;
         
         public RombElement()
         {
             generateVisualContent += GenerateVisualContent;
 
-            schedule.Execute(ChangeColorAnimation).Every(1000);
+            timeLeft = AnimationTime;
+            schedule.Execute(ChangeColorAnimation).Every(16);
         }
 
         private void ChangeColorAnimation()
         {
-            var currentTime = Time.time * 4;
-            firstColor.a = (byte)(currentTime % 255);
-            secondColor.a = (byte)(currentTime % 255);
-            thirdColor.a = (byte)(currentTime % 255);
-            fourColor.a = (byte)(currentTime % 255);
+            if (firstColor.a > 250 && !ReversedAnimation)
+            {
+                ReversedAnimation = true;
+                AlphaValue = 0;
+                timeLeft = AnimationTime;
+            }
+            else if (firstColor.a < 5 && ReversedAnimation)
+            {
+                AlphaValue = 255;
+                timeLeft = AnimationTime;
+                ReversedAnimation = false;
+            }
             
+            timeLeft -= Time.deltaTime;
+            
+            firstColor.a = (byte)Mathf.Lerp(firstColor.a, AlphaValue, Time.fixedDeltaTime / timeLeft);
+            secondColor.a = (byte)Mathf.Lerp(secondColor.a, AlphaValue, Time.deltaTime / timeLeft);
+            thirdColor.a = (byte)Mathf.Lerp(thirdColor.a, AlphaValue, Time.fixedDeltaTime / timeLeft);
+            fourColor.a = (byte)Mathf.Lerp(fourColor.a, AlphaValue, Time.deltaTime / timeLeft);
+
             MarkDirtyRepaint();
         }
 
         Vertex[] vertices = new Vertex[4];
         ushort[] indices = { 0, 1, 2, 2, 3, 0 };
 
-        private Color32 firstColor  = new (255, 0, 0, 255);
-        private Color32 secondColor  = new (0, 255, 0, 255);
-        private Color32 thirdColor  = new (0, 0, 255, 255);
-        private Color32 fourColor  = new (17, 55, 55, 255);
+        private Color32 firstColor  = new (255, 0, 0, 0);
+        private Color32 secondColor  = new (0, 255, 0, 0);
+        private Color32 thirdColor  = new (0, 0, 255, 0);
+        private Color32 fourColor  = new (17, 55, 55, 0);
 
         void GenerateVisualContent(MeshGenerationContext mgc)
         {
