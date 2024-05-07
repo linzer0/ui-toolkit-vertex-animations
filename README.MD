@@ -161,4 +161,7 @@ private void ChangeColorAnimation()
 
 После чего, мы вызываем метод **MarkDirtyRepaint()**, для того чтобы спровоцировать вызов метода **GenerateVisualContent(...)**
 
-[Примерно так это выглядит](Resources/firstColorAnimation.mov)
+![](Resources/firstColorAnimation.mov)
+
+## Chapter 3: New Horizons
+Давайте признаемся, анимации цвета, это самое простое, что можно было бы придумать.
