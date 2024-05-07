@@ -157,3 +157,8 @@ private void ChangeColorAnimation()
 }
 ```
 
+Дальше у нас идет четыре строки, где мы описываем, что наш оттенки наших вершин должны стремится от 0, к 255.
+
+После чего, мы вызываем метод **MarkDirtyRepaint()**, для того чтобы спровоцировать вызов метода **GenerateVisualContent(...)**
+
+[Примерно так это выглядит](Resources/firstColorAnimation.mov)
