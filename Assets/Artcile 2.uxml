@@ -3,7 +3,8 @@
         <CustomElements.EmojiIconElement style="position: absolute; left: 805px; top: 0; right: 0; bottom: 527px; display: flex;" />
         <CustomElements.StarElement style="position: absolute; left: 870px; top: 584px; right: 37px; bottom: 31px; display: flex;" />
     </ui:VisualElement>
-    <ui:VisualElement name="workshop" style="flex-grow: 1; display: flex; visibility: visible; position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(12, 12, 12, 0.72);">
-        <CustomElements.RombElement style="position: absolute; left: 20%; top: 20%; right: 20%; bottom: 20%;" />
+    <ui:VisualElement name="workshop" style="flex-grow: 1; display: flex; visibility: visible; position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.6);">
+        <CustomElements.RombElement animation-time="5" first-vertex-position="531.86,225.7,0" name="RombElement" style="position: absolute; left: 20%; top: 20%; right: 20%; bottom: 20%; transition-property: width, height; transition-duration: 2s, 2s; transition-timing-function: linear, linear; transition-delay: 0s, 0s; cursor: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-6090568113533005507&amp;guid=5c9a8667338b44ebfb4f57db9836fb3b&amp;type=3#check&quot;); display: none;" />
+        <CustomElements.ImageAnimation play-animation="true" angle-limit="15" style="position: relative; background-image: url(&quot;project://database/Assets/Sprites/bell.png?fileID=2800000&amp;guid=6d89de981d58b4a1aa548c3c986f01a4&amp;type=3#bell&quot;); background-color: rgba(217, 217, 217, 0); transform-origin: top; rotate: 0; width: 200px; height: 200px; top: 50px; left: 50px;" />
     </ui:VisualElement>
 </ui:UXML>
