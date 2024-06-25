@@ -5,21 +5,27 @@ namespace CustomElements
     [UxmlElement]
     public partial class ImageAnimation : VisualElement
     {
-        [UxmlAttribute] private float AngleLimit = 15;
-        [UxmlAttribute] private bool PlayAnimation = true;
+        [UxmlAttribute] private float AngleLimit = 25;
+        [UxmlAttribute] private bool AnimationIsStopped = true;
         
         private bool _rotationDirectionIsMinus = true;
         
         public ImageAnimation()
         {
-            schedule.Execute(Animation).Every(16);
+            schedule.Execute(PlayAnimation).Every(16);
         }
 
-        void Animation()
+        private void PlayAnimation()
         {
-            if (!PlayAnimation)
+            if (AnimationIsStopped)
                 return;
             
+            RotateBell();
+            MarkDirtyRepaint();
+        }
+
+        void RotateBell()
+        {
             var newRotate = style.rotate;
             Angle rotateAngle = newRotate.value.angle;
 
@@ -42,8 +48,6 @@ namespace CustomElements
             
             newRotate.value = new Rotate(rotateAngle);
             style.rotate = newRotate;
-            
-            MarkDirtyRepaint();
         }
     }
 }

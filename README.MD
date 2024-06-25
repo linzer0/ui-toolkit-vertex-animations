@@ -167,6 +167,82 @@ private void ChangeColorAnimation()
 Давайте признаемся, анимации цвета, это самое простое, что можно было бы придумать.
 
 А что если у нас есть заявка на непосредственность? К примеру, мы хотим анимировать иконки/спрайты.
+Иногда в голову прилетают интересные вещи, такие как мысли или более тяжелые, как анимация иконок без покадровой анимации.
 
-Я недавно видел, как в Steam при наличие уведомление, у иконки проигрывается анимация, давайте попробуем сделать что-то подобное.
+В таком случае рассмотрим следующий пример, предположим, мы хотим чтобы у нас была анимация для колола. Хотим, чтобы он болталяс туда-сюда (влево и вправо).
 
+<img height="300" src="Assets/Sprites/bell.png" width="300"/>
+
+Концептуально, мы не делаем ничего сложного, всего лишь меняем значение Rotate у VisualElement и дополниельно изменим центер масс (xdd)
+
+Зачем менять центр у элемента? Чтобы логически было проще с этим работать и анимировать
+
+### TODO нарисовать где находится центр по дефолту, и где будет сейчас, было бы славно если на картинке
+
+Теперь, приступаем к основной части нашего мероприятия, написание самой анимации.
+
+```csharp
+using UnityEngine.UIElements;
+
+namespace CustomElements
+{
+    [UxmlElement]
+    public partial class ImageAnimation : VisualElement
+    {
+        [UxmlAttribute] private float AngleLimit = 25;
+        [UxmlAttribute] private bool AnimationIsStopped = true;
+        
+        private bool _rotationDirectionIsMinus = true;
+        
+        public ImageAnimation()
+        {
+            schedule.Execute(PlayAnimation).Every(16);
+        }
+
+        private void PlayAnimation()
+        {
+            if (AnimationIsStopped)
+                return;
+            
+            RotateBell();
+            MarkDirtyRepaint();
+        }
+
+        void RotateBell()
+        {
+            var newRotate = style.rotate;
+            Angle rotateAngle = newRotate.value.angle;
+
+            if (_rotationDirectionIsMinus)
+            {
+                rotateAngle.value--;
+                if (rotateAngle.value < -AngleLimit)
+                {
+                    _rotationDirectionIsMinus = false;
+                }
+            }
+            else if (_rotationDirectionIsMinus == false)
+            {
+                rotateAngle.value++;
+                 if (rotateAngle.value > AngleLimit)
+                 {
+                     _rotationDirectionIsMinus = true;
+                 }
+            }
+            
+            newRotate.value = new Rotate(rotateAngle);
+            style.rotate = newRotate;
+        }
+    }
+}
+```
+
+Так выглдяит весь класс, с большинством мы уже знакомы, давайте будем смотреть на метод RotateBel()
+
+Основной составляющей анимации у нас явялется изменение поворота картинки, поэтому здесь ничего намудренного, мы вращаем картинку влево и вправо, до тех пор пока она не упрется в AngleLimit.
+
+![](Resources/simple-rotate-animation.mov)
+
+Если подитожить, то мы меняем значение style.rotate на новое и после чего вызываем метод MarkDirtyRepaint(), чтобы оно нам перекрасил VisualElement**.
+
+## Chapter 4: Между линий
